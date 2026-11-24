@@ -38,7 +38,7 @@ export function createBody(
   phase: number,
 ): Body {
   const heading = Math.random() * Math.PI * 2
-  const speed = 6 + Math.random() * 5
+  const speed = 12 + Math.random() * 10
   const body: Body = {
     x,
     y,
@@ -63,7 +63,7 @@ function center(body: Body) {
 
 function limitSpeed(body: Body) {
   const speed = Math.hypot(body.vx, body.vy)
-  const maxSpeed = 12
+  const maxSpeed = 24
   if (speed > maxSpeed) {
     body.vx *= maxSpeed / speed
     body.vy *= maxSpeed / speed
@@ -155,17 +155,17 @@ function contain(body: Body, width: number, height: number) {
 }
 
 function drift(body: Body, time: number, dt: number) {
-  body.vx += Math.sin(time * 0.22 + body.phase) * 2.2 * dt
-  body.vy += Math.cos(time * 0.18 + body.phase * 1.4) * 2.2 * dt
+  body.vx += Math.sin(time * 0.22 + body.phase) * 4.4 * dt
+  body.vy += Math.cos(time * 0.18 + body.phase * 1.4) * 4.4 * dt
   const drag = Math.exp(-0.35 * dt)
   body.vx *= drag
   body.vy *= drag
 
   const speed = Math.hypot(body.vx, body.vy)
-  if (speed < 8) {
+  if (speed < 16) {
     const heading = speed > 1 ? Math.atan2(body.vy, body.vx) : body.phase
-    body.vx += Math.cos(heading) * (8 - speed) * 0.12
-    body.vy += Math.sin(heading) * (8 - speed) * 0.12
+    body.vx += Math.cos(heading) * (16 - speed) * 0.12
+    body.vy += Math.sin(heading) * (16 - speed) * 0.12
   }
   limitSpeed(body)
 
@@ -215,7 +215,7 @@ export function stepBodies(
     for (const body of bodies) contain(body, width, height)
   }
 
-  const maxTravel = 12 * frameDt
+  const maxTravel = 24 * frameDt
   for (let index = 0; index < bodies.length; index += 1) {
     const body = bodies[index]
     const start = starts[index]

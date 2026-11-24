@@ -41,6 +41,18 @@ export default function App() {
     <>
       <CloudShader className="fixed inset-0 z-0 h-svh min-h-0 w-full" />
       <FloatingButtons websites={websites} />
+      <img
+        src="/ir-productions-logo.png"
+        alt="IR Productions"
+        draggable={false}
+        className="pointer-events-none fixed bottom-3.5 left-3.5 z-20 w-[104px]"
+      />
+      <img
+        src="/ian-portrait.png"
+        alt="Ian Rickert"
+        draggable={false}
+        className="pointer-events-none fixed right-3.5 bottom-3.5 z-20 h-[148px] w-auto"
+      />
     </>
   )
 }
